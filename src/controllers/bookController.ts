@@ -7,6 +7,13 @@ export const bookController = {
     return res.json(allBooks);
   },
 
+  getSingleData: async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const book = await Book.findById(id);
+    return res.json(book);
+  },
+
   createData: async (req: Request, res: Response) => {
     const { name, description, isbn, author } = req.body;
 

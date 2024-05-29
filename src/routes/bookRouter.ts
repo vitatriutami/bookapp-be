@@ -1,5 +1,5 @@
 import express from "express";
-import { bookController } from "../controllers/bookControllers";
+import { bookController } from "../controllers/bookController";
 import multer from "multer";
 
 const upload = multer({
@@ -15,4 +15,6 @@ const upload = multer({
 export const bookRouter = express.Router();
 
 bookRouter.get("/", bookController.getData);
+bookRouter.get("/:id", bookController.getSingleData)
+
 bookRouter.post("/", upload.single("file"), bookController.createData); // add multer as middleware

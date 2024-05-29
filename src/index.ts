@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { bookRouter } from "./routes/bookRouter";
+import { authRouter } from "./routes/authRouter";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.static("public")) // to serve static files
 // allow dari semua URL / origin tertentu
 app.use(cors({ origin: ["http://localhost:5173"] }));
 
-app.use("/books", bookRouter)
+app.use("/api/v1/books", bookRouter)
+app.use("/auth", authRouter)
 
 app.listen(8000);

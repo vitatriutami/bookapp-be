@@ -8,7 +8,9 @@ import { authRouter } from "./routes/authRouter";
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGODB_URI!)
+  .connect(
+    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}.mp3qw2f.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority&appName=DevscaleDB`
+  )
   .then(() => console.log("Mongo Connected"))
   .catch(() => console.error("Mongo connection error"));
 
@@ -19,7 +21,11 @@ app.use(express.urlencoded({ extended: true })); // to read formData
 app.use(express.static("public")); // to serve static files
 
 // allow dari semua URL / origin tertentu
-app.use(cors({ origin: ["http://localhost:5173"] }));
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+);
 
 app.use("/api/v1/books", bookRouter);
 app.use("/auth", authRouter);

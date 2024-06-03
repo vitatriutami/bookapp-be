@@ -2,26 +2,28 @@ version: "3.8"
 
 services:
   expressjs:
+    depends_on:
+      - mongodb
     build: .
     ports:
       - "8000:8000"
-    depends_on:
-      - mongodb
+    environment:
+    - NODE_PORT=8000
+    - DB_HOST=$MONGODB_HOST
+    - DB_USER=$MONGODB_USER
+    - DB_PASSWORD=$MONGODB_PASSWORD
+    - DB_NAME=$MONGODB_DATABASE
 
   mongodb:
     image: mongo
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
       - "27017:27017"
     volumes:
-      - type: volume
-        source: mongovolume
-        target: /data/db
-      - type: volume
-        source: mongoconfig
-        target: /data/configdb
+      - node-mongo-data:/data/db
 
 volumes:
-  mongovolume:
-    name: mongovolume
-  mongoconfig:
-    name: mongoconfig
+  node-mongo-data:

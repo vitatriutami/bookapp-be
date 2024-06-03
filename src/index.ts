@@ -8,9 +8,7 @@ import { authRouter } from "./routes/authRouter";
 dotenv.config();
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}.mp3qw2f.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority&appName=DevscaleDB`
-  )
+  .connect(process.env.MONGODB_URL!)
   .then(() => console.log("Mongo Connected"))
   .catch(() => console.error("Mongo connection error"));
 

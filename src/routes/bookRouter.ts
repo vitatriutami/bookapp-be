@@ -14,7 +14,10 @@ const upload = multer({
 });
 export const bookRouter = express.Router();
 
+// CRUD
+bookRouter.post("/", upload.single("file"), bookController.createData); // add multer as middleware
 bookRouter.get("/", bookController.getData);
 bookRouter.get("/:id", bookController.getSingleData)
-
-bookRouter.post("/", upload.single("file"), bookController.createData); // add multer as middleware
+bookRouter.patch("/:id", bookController.updateData);
+bookRouter.delete("/:id", bookController.deleteData);
+bookRouter.get("/:id", bookController.deleteData);

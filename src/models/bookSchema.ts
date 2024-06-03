@@ -6,6 +6,7 @@ const bookSchema = new Schema({
   isbn: String,
   author: String,
   file: String,
+  isAvailable: Boolean,
 });
 
 export const Book = model("book", bookSchema);

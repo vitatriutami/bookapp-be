@@ -21,7 +21,7 @@ app.use(express.static("public")); // to serve static files
 // allow dari semua URL / origin tertentu
 app.use(
   cors({
-    origin: ["https://miawbrary.vercel.app"],
+    origin: ["http://localhost:5173"],
   })
 );
 

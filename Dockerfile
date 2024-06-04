@@ -14,6 +14,8 @@ EXPOSE 8000
 
 CMD ["npm", "start"]
 
+
+
 # FROM node:lts
 
 # WORKDIR /app

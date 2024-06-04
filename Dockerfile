@@ -6,6 +6,8 @@ COPY ./package*.json ./
 
 RUN npm install
 
+RUN npm run build
+
 COPY . .
 
 ENV MONGODB_URL="mongodb+srv://vitatr:1S7r9tNPumZ5YVtb@devscaledb.mp3qw2f.mongodb.net/bookstorage?retryWrites=true&w=majority&appName=DevscaleDB"
